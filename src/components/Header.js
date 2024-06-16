@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utilities/userSlice";
+import { LOGO_URL } from "../utilities/constants";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -43,10 +44,10 @@ const Header = () => {
       });
   };
   return (
-    <div className="absolute bg-gradient-to-b from-black px-6 py-2 z-10 flex w-screen justify-between">
+    <div className="absolute bg-gradient-to-b from-black px-6 pr-8 py-2 z-10 flex w-screen justify-between">
       <img
         className="w-44"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        src={LOGO_URL}
         alt="logo"
       />
       {user && (
@@ -54,7 +55,7 @@ const Header = () => {
           <img className="rounded-lg" alt="user" src={user?.photoURL} />
           <button
             onClick={handleSignOut}
-            className="text-white font-bold text-sm"
+            className="text-white font-bold text-sm px-1"
           >
             (Sign Out)
           </button>
