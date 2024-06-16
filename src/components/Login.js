@@ -4,27 +4,28 @@ import { checkValidData } from "../utilities/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utilities/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utilities/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
+
   const password = useRef();
   const email = useRef();
   const name = useRef();
 
+  const dispatch= useDispatch();
+
   const handleValidation = () => {
-    const message = isSignInForm
-      ? checkValidData(email.current.value, password.current.value)
-      : checkValidData(
-          email.current.value,
-          password.current.value,
-          name.current.value
-        );
+    const message = checkValidData(email.current.value, password.current.value);
+
+    setErrorMessage(message);
     if (message !== null) return;
-    console.log(message);
     if (!isSignInForm) {
       createUserWithEmailAndPassword(
         auth,
@@ -34,7 +35,13 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: name.current.value , photoURL: "https://media.licdn.com/dms/image/D5635AQFsN8dtKR2mww/profile-framedphoto-shrink_400_400/0/1711261850529?e=1719046800&v=beta&t=y-BOJs4GLKqSayrihV0JR1bWAh-YdocG_OCdyWwfCE8"
+          }).then(() => {
+            const {uid,email,displayName,photoURL} = auth.currentUser;
+            dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}))
+          }).catch((error) => {
+          });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -58,7 +65,6 @@ const Login = () => {
         });
     }
     console.log(errorMessage);
-    setErrorMessage("");
   };
 
   const toggleSignIn = () => {
@@ -66,9 +72,9 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <Header />
-      <div className="absolute">
+      <div className="absolute bg-fixed">
         <img
           src="https://assets.nflxext.com/ffe/siteui/vlv3/51c1d7f7-3179-4a55-93d9-704722898999/be90e543-c951-40d0-9ef5-e067f3e33d16/IN-en-20240610-popsignuptwoweeks-perspective_alpha_website_small.jpg"
           alt="bgImage"
@@ -101,6 +107,7 @@ const Login = () => {
           placeholder="Password"
           className="p-4 my-4 w-full bg-gray-600 focus-within: text-white"
         />
+        <p className="text-red-500 font-bold">{errorMessage}</p>
         <button
           type="submit"
           className="p-4 my-2 text-white bg-red-700 w-full rounded-lg"
