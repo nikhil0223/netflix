@@ -73,9 +73,9 @@ const Login = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <Header />
-      <div className="absolute bg-fixed">
+      <div className="absolute bg-fixed w-[screen]">
         <img
           src={BG_IMAGE}
           alt="bgImage"
