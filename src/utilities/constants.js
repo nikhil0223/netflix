@@ -9,3 +9,11 @@ export const BG_IMAGE =
 
 export const MOVIEDB_URL =
   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
+
+export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w200/";
+
+export const SUPPORTED_LANGUAGE = [
+  { identifier: "en", name: "English" },
+  { identifier: "Hindi", name: "Hindi" },
+  { identifier: "Spanish", name: "Spanish" },
+];
