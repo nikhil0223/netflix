@@ -78,13 +78,21 @@ const Header = () => {
           >
             {!gptSearch ? "Search" : "Homepage"}
           </button>
-          <img className="hidden md:inline-block rounded-lg w-12" alt="user" src={user?.photoURL} />
-          <button
-            onClick={handleSignOut}
-            className="text-white font-bold text-sm px-1"
-          >
-            (Sign Out)
-          </button>
+          <div className="ml-4 relative group cursor-pointer w-16">
+          <img
+              className="hidden md:inline-block rounded-lg w-12 h-10"
+              alt="user"
+              src={user?.photoURL}
+            />
+            <div 
+                className="absolute text-white font-bold text-[12px] hidden group-hover:block text-center">
+              <p className="mt-2"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </p>
+            </div>
+        </div>
         </div>
       )}
     </div>
