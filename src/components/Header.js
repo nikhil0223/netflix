@@ -9,6 +9,7 @@ import { addUser, removeUser } from "../utilities/userSlice";
 import { LOGO_URL, SUPPORTED_LANGUAGE } from "../utilities/constants";
 import { toggleGptSearch } from "../utilities/gptSlice";
 import { changeLanguage } from "../utilities/configSlice";
+import caretIcon from '../assets/caretIcon.svg';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -57,7 +58,17 @@ const Header = () => {
 
   return (
     <div className="absolute bg-gradient-to-b from-black px-6 pr-8 py-2 z-10 flex flex-col md:flex-row md:flex justify-between w-[100%]">
-      <img className="w-44 mx-auto md:mx-0" src={LOGO_URL} alt="logo" />
+      <div className="flex items-center gap-8">
+        <img className="w-44 mx-auto md:mx-0" src={LOGO_URL} alt="logo" />
+        <ul className="hidden md:flex gap-5 nav-links text-gray-300 text-sm">
+          <li>Home</li>
+          <li>TV Shows</li>
+          <li>Movies</li>
+          <li>New & Popular</li>
+          <li>My List</li>
+          <li>Browse by Language</li>
+        </ul>
+      </div>
       {user && (
         <div className="h-10 md:mx-0 my-3 flex justify-between">
           {gptSearch && (
@@ -78,21 +89,19 @@ const Header = () => {
           >
             {!gptSearch ? "Search" : "Homepage"}
           </button>
-          <div className="ml-4 relative group cursor-pointer w-16">
-          <img
+          <div className="ml-4 flex items-center gap-2 cursor-pointer relative group">
+            <img
               className="hidden md:inline-block rounded-lg w-12 h-10"
               alt="user"
               src={user?.photoURL}
             />
-            <div 
-                className="absolute text-white font-bold text-[12px] hidden group-hover:block text-center">
-              <p className="mt-2"
-                onClick={handleSignOut}
-              >
+            <img src={caretIcon} alt="" className="" />
+            <div className="absolute top-4 right-0 w-max py-4 px-5 underline z-[1] hidden group-hover:block text-white">
+              <p className="mt-2" onClick={handleSignOut}>
                 Sign Out
               </p>
             </div>
-        </div>
+          </div>
         </div>
       )}
     </div>

@@ -3,7 +3,6 @@ import MovieCard from "./MovieCard";
 import '../App.css';
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies);
   
   return (
     <div>

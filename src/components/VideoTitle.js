@@ -9,7 +9,7 @@ const VideoTitle = ({ title, overview }) => {
         <button className="w-[5rem] md:w-[8rem] bg-white text-black md:p-4 md:px-0 p-2   rounded-lg hover:bg-opacity-80">
           ▶ Play
         </button>
-        <button className="hidden md:inline-block w-[8rem] bg-white text-black p-4 px-0 mx-2 rounded-lg hover:bg-opacity-80">
+        <button className="hidden md:inline-block w-[8rem] bg-[#6d6d6eb3] text-white p-4 px-0 mx-2 rounded-lg hover:bg-[#6d6d6e66]">
           {/* 🛈  */}
           More Info
         </button>

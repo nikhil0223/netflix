@@ -57,7 +57,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -65,7 +64,6 @@ const Login = () => {
           setErrorMessage(errorCode + "-" + errorMessage);
         });
     }
-    console.log(errorMessage);
   };
 
   const toggleSignIn = () => {
