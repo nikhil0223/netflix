@@ -60,14 +60,14 @@ const Header = () => {
     <div className="absolute bg-gradient-to-b from-black px-6 pr-8 py-2 z-10 flex flex-col md:flex-row md:flex justify-between w-[100%]">
       <div className="flex items-center gap-8">
         <img className="w-44 mx-auto md:mx-0" src={LOGO_URL} alt="logo" />
-        <ul className="hidden md:flex gap-5 nav-links text-gray-300 text-sm">
+        {user && <ul className="hidden md:flex gap-5 nav-links text-gray-300 text-sm">
           <li>Home</li>
           <li>TV Shows</li>
           <li>Movies</li>
           <li>New & Popular</li>
           <li>My List</li>
           <li>Browse by Language</li>
-        </ul>
+        </ul>}
       </div>
       {user && (
         <div className="h-10 md:mx-0 my-3 flex justify-between">

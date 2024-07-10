@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { API_OPTIONS } from "../utilities/firebase";
 import { useDispatch } from "react-redux";
 import {  addTopRated } from "../utilities/movieSlice";
 
@@ -7,7 +6,13 @@ const useTopRated = () => {
   const dispatch = useDispatch();
 
   const getTopRated = async () => {
-    const data = await fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", API_OPTIONS);
+    const data = await fetch("https://netflix-backend-lime.vercel.app/movies/list",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({cat:'top_rated'}),
+    });
     const json = await data.json();
     dispatch(addTopRated(json.results));
   };
