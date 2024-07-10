@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const fetch = require('node-fetch'); // Add this line to require node-fetch
+const fetch = require('node-fetch');
 require('dotenv').config();
 const port = process.env.PORT;
 
